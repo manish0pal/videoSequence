@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proctor</title>
+</head>
+<script>
+    var mediaJSON = {
+
+
+        baseUrl: "https://dm0qx8t0i9gc9.cloudfront.net/watermarks/video/GTYSdDW/",
+        videos: [
+            {
+                "sources": "students-taking-test-in-class_wk3eoq-wh__0e10e7f7d4f97e1e1a814111679020a1__P360.mp4",
+                "candidateId": "For Bigger Blazes"
+            },
+            {
+                "sources": "students-taking-test_-k_3ncwzb__132ad0c8a0e0dda54035be7f7b309328__P360.mp4",
+                "candidateId": "For Bigger Escape"
+            },
+            {
+                "sources": "students-taking-notes-in-class_bjyqqqwbb__02300e9eee81f6091ed012b76e4db5d4__P360.mp4",
+                "candidateId": "For Bigger Fun"
+            },
+            {
+                "sources": "teacher-observing-students-taking-test_-ypz3qw-s__e6a07c16a31dd47a4fba936a13669f6d__P360.mp4",
+                "candidateId": "For Bigger Joyrides"
+            },
+            {
+                "sources": "students-taking-a-test-in-kenya-classroom-17_bjz8l8_gs__51b416e345d8d02e373217ccb12e8277__P360.mp4",
+                "candidateId": "For Bigger Meltdowns"
+            }
+        ]
+    };
+
+</script>
+
+<body>
+    <div>
+        <video preload="auto" width="520" height="340" id="firstVdoFrame">
+            <source src="" type="video/mp4">
+        </video>
+
+        <video preload="auto" width="520" height="340" id="secondVdoFrame" style="display: none;">
+            <source src="" type="video/mp4">
+        </video>
+
+    </div>
+    <button onclick="startVdo()">CLick to Start</button>
+</body>
+<script>
+    let videoPointer = 0;
+    var firstVdo = document.getElementById("firstVdoFrame");
+    var secondVdo = document.getElementById("secondVdoFrame");
+
+    const setVdoSrc = (videoPlayer, videoPointer) => {
+        var source = document.createElement('source');
+
+        if (videoPlayer.hasChildNodes()) {
+            videoPlayer.removeChild(videoPlayer.children[0]); // empty source
+        }
+
+
+        source.setAttribute('src', mediaJSON.baseUrl + mediaJSON.videos[videoPointer].sources);
+        source.setAttribute('type', 'video/mp4');
+        videoPlayer.appendChild(source);
+        videoPlayer.load();
+    }
+
+
+
+
+    //By defult play first video
+    setVdoSrc(firstVdo, 0);
+    setVdoSrc(secondVdo, 1);
+
+    //call this in js
+    const startVdo = () => {
+        firstVdo.play();
+    }
+
+
+
+    firstVdo.onended = () => {
+        videoPointer++;
+        changeVdoSrc(videoPointer, secondVdo, firstVdo);
+
+    };
+
+
+    secondVdo.onended = () => {
+        videoPointer++;
+        changeVdoSrc(videoPointer, firstVdo, secondVdo);
+
+    }
+
+
+    const changeVdoSrc = (videoPointer, nextVideoPlayer, videoPlayer) => {
+        nextVideoPlayer.play();
+
+        videoPlayer.style.display = "none";
+        nextVideoPlayer.style.display = "block";
+
+
+        setVdoSrc(videoPlayer, videoPointer)
+
+    }
+
+
+
+</script>
+
+
+</html>
