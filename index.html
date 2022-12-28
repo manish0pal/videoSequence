@@ -22,6 +22,10 @@
                 "candidateId": "For Bigger Escape"
             },
             {
+                "sources": "students-taking-a-test-in-kenya-classroom-17_bjz8l8_gs__51b416e345d8d02e373217ccb12e8277__P360.mp4",
+                "candidateId": "For Bigger Meltdowns"
+            },
+            {
                 "sources": "students-taking-notes-in-class_bjyqqqwbb__02300e9eee81f6091ed012b76e4db5d4__P360.mp4",
                 "candidateId": "For Bigger Fun"
             },
@@ -29,10 +33,7 @@
                 "sources": "teacher-observing-students-taking-test_-ypz3qw-s__e6a07c16a31dd47a4fba936a13669f6d__P360.mp4",
                 "candidateId": "For Bigger Joyrides"
             },
-            {
-                "sources": "students-taking-a-test-in-kenya-classroom-17_bjz8l8_gs__51b416e345d8d02e373217ccb12e8277__P360.mp4",
-                "candidateId": "For Bigger Meltdowns"
-            }
+
         ]
     };
 
@@ -50,13 +51,17 @@
 
     </div>
     <button onclick="startVdo()">CLick to Start</button>
+
+    <h2 id="videoCount">0</h2>
 </body>
 <script>
     let videoPointer = 0;
     var firstVdo = document.getElementById("firstVdoFrame");
     var secondVdo = document.getElementById("secondVdoFrame");
+    var videoCount = document.getElementById("videoCount");
 
     const setVdoSrc = (videoPlayer, videoPointer) => {
+
         var source = document.createElement('source');
 
         if (videoPlayer.hasChildNodes()) {
@@ -100,7 +105,7 @@
 
     const changeVdoSrc = (videoPointer, nextVideoPlayer, videoPlayer) => {
         nextVideoPlayer.play();
-
+        videoCount.innerText = videoPointer
         videoPlayer.style.display = "none";
         nextVideoPlayer.style.display = "block";
 
